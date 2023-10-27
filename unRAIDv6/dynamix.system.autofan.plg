@@ -2,12 +2,12 @@
 
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "dynamix.system.autofan">
-<!ENTITY author    "vladimir-tutin/gfjardim">
-<!ENTITY version   "2023.02.05a">
+<!ENTITY author    "vladimir-tutin">
+<!ENTITY version   "2023.10.27a">
 <!ENTITY launch    "Settings/FanSettings">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/vladimir-tutin/dynamix/master/unRAIDv6/&name;.plg">
 <!ENTITY source    "/boot/config/plugins/&name;/&name;">
-<!ENTITY MD5       "c01a15c2e9948cd6c5ecfc53349637ca">
+<!ENTITY MD5       "cc7fa8f8d1a173b220b9ae887d3bf540">
 ]>
 
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" min="6.9.0">
