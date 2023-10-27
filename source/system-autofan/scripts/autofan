@@ -23,7 +23,7 @@
 # Version 1.5   Modified by Bergware    - added nvme devices temperature reading (contributed by syntactic-salt)
 #                                       - added exclude disks from temperature reading (contributed by andreiio)
 # Version 1.6   Modified by InfinityMod - added mulifan support
-#                                       - added fan spin up/down offset 
+#                                       - added fan spin up/down offset
 # Version 1.7   Modified by doron       - Prevent spinning up SAS drives, use sdspin
 #                                       - Use "-n standby" flag in smartctl calls, extra safety
 #                                       - Obtain HD temp data from SAS drives
@@ -64,8 +64,8 @@ TEMP_HIGH=45       # Anything this number and above - fan is *full*
 # what numbers you want to use for your fan pwm settings. Should not need to
 # change the OFF variable, only the LOW and maybe also HIGH to what you desire.
 # Any real number between 0 and 255.
-PWM_OFF_OFFSET=30  # Offset on turning off PWM = (PWM_LOW - PWM_OFF_OFFSET)
-PWM_ON_OFFSET=30   # Offset on turning on PWM = (PWM_CALCULATED + PWM_ON_OFFSET)
+PWM_OFF_OFFSET=4  # Offset on turning off PWM = (PWM_LOW - PWM_OFF_OFFSET)
+PWM_ON_OFFSET=6   # Offset on turning on PWM = (PWM_CALCULATED + PWM_ON_OFFSET)
 PWM_OFF=0          # Off Value (note: many PWM fans will not turn off)
 PWM_LOW=35         # Value to make your fan go slow
 PWM_HIGH=255       # Value to make your fan go fast
@@ -76,7 +76,7 @@ EXCLUDE=""         # By default no disks are excluded
 # PROGRAM LOGIC - CHANGE AT YOUR PERIL ;)
 #=======================================================================================
 # Get User Input
-while getopts "t:T:m:c:f:l:qhVe:" opt; do
+while getopts "t:T:m:c:f:l:H:qhVe:" opt; do
   case $opt in
     t) TEMP_LOW=$OPTARG ;;
     T) TEMP_HIGH=$OPTARG ;;
@@ -84,6 +84,7 @@ while getopts "t:T:m:c:f:l:qhVe:" opt; do
     c) PWM_CONTROLLER=$OPTARG ;;
     f) PWM_FAN=$OPTARG ;;
     l) PWM_LOW=$OPTARG ;;
+    H) PWM_HIGH=$OPTARG ;;
     V) echo $program_name version: $version ; exit 0 ;;
     e) EXCLUDE=$OPTARG ;;
     h) usage >&2 ; exit 0 ;;
