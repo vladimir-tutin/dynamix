@@ -123,6 +123,7 @@ $(function() {
   if (!$('select[name=controller]').val()) {
     $('input[name=fan]').val('').prop('placeholder','');
     $('input[name=pwm]').val('');
+    $('input[name=pwm_high').val('');
     $('input[name=low]').val('');
     $('input[name=high]').val('');
     $('input[name=interval]').val('');
@@ -137,7 +138,7 @@ $(function() {
 <form markdown="1" method="POST" action="/update.php" target="progressFrame" onsubmit="tempVal(this)">
 <input type="hidden" name="#file" value="<?=$plugin?>/<?=$plugin.$index?>.cfg">
 <input type="hidden" name="#include" value="plugins/<?=$plugin?>/include/update.autofan.php">
-<input type="hidden" name="#prefix" value="controller=c&fan=f&pwm=l&low=t&high=T&interval=m&exclude=e">
+<input type="hidden" name="#prefix" value="controller=c&fan=f&pwm=l&pwm_high=H&low=t&high=T&interval=m&exclude=e">
 
 _(Fan control function)_:
 : <select name="service">
@@ -158,6 +159,9 @@ _(PWM fan)_:
 
 _(Minimum PWM value)_:
 : <input type="text" name="pwm" value="<?=$cfg['pwm']??''?>" placeholder=""><input type="button" id="pwm" value="_(Detect)_" onclick="detectFanLow()" style="margin:0" <?=isset($cfg['fan'])?'':'disabled'?>>
+
+_(Maximum PWM value)_:
+: <input type="number" name="pwm_high" min="0" max="200" value="<?=temp_val($cfg['pwm_high'])??''?>">
 
 _(Low temperature threshold)_ (&deg;<?=$display['unit']?>):
 : <input type="number" name="low" min="0" max="200" value="<?=temp_val($cfg['low'])??''?>">
